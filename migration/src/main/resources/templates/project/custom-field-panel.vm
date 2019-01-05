@@ -1,0 +1,72 @@
+<div style="display: table; width: 1024px">
+    <div style="display: table-row">
+        <div style="display: table-cell; width: 100%;">
+            <h1 style="color: #172B4D;">JIRA Project Migration Component (JPMC)</h1>
+        </div>
+    </div>
+    <div style="display: table-row">
+        <div style="display: table-cell; width: 100%;">
+            <h4 style="color: #505F79">Please map your project's <span style="color: #FF5630">Custom Fields</span>
+            to the GTI governance model.</h4>
+        </div>
+    </div>
+</div>
+<p>&nbsp;</p>
+
+
+<div style="display: table; width: 1024px">
+    <div style="display: table-row">
+        <div style="display: table-cell; width: 50%;"><h2 style="color: #7A869A;">Project Snapshot</h2></div>
+        <div style="display: table-cell; width: 50%;"><h2 style="color: #7A869A;">Governance Model</h2></div>
+    </div>
+
+
+#foreach( $field in $custom-fields )
+
+    <div style="display: table-row">
+        <div style="display: table-cell; width: 50%;"><hr/></div>
+        <div style="display: table-cell; width: 50%;"><hr/></div>
+    </div>
+
+    <div style="display: table-row;">
+        <div style="display: table-cell; width: 50%; padding: 10px 10px 10px 0px;">
+            <strong style="color: #6B778C">Custom Field:</strong><br/>
+            <strong style="color: #0747A6;">$!field.getName()</strong>
+        </div>
+        <div style="display: table-cell; width: 50%; padding: 10px 10px 10px 0px;">
+            <strong style="color: #6B778C">Custom Field:</strong><br/>
+            <select>
+            #foreach( $target in $target-fields )
+                <option>$!target.getName()</option>
+            #end
+            </select>
+        </div>
+    </div>
+
+    <div style="display: table-row;">
+        <div style="display: table-cell; width: 50%; padding: 10px 10px 10px 0px;">
+            <strong style="color: #6B778C">Data Type:</strong><br/>
+            $!field.getCustomFieldType()<br/>
+            $!field.getCustomFieldTypeKey()
+        </div>
+        <div style="display: table-cell; width: 50%; padding: 10px 10px 10px 0px;">
+            <strong style="color: #6B778C">Data Type:</strong><br/>
+            $!target-fields.get(0).getCustomFieldType()<br/>
+            $!target-fields.get(0).getCustomFieldTypeKey()
+        </div>
+    </div>
+
+    <div style="display: table-row;">
+        <div style="display: table-cell; width: 50%; padding: 10px 10px 10px 0px;">
+            <strong style="color: #6B778C">Description:</strong><br/>
+            $!field.getDescription()
+        </div>
+        <div style="display: table-cell; width: 50%; padding: 10px 10px 10px 0px;">
+            <strong style="color: #6B778C">Description:</strong><br/>
+            $!target-fields.get(0).getDescription()
+        </div>
+    </div>
+
+#end
+
+</div>

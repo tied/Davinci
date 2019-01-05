@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="migration"/>
+  <!-- add our web resources -->
+  <web-resource key="migration-resources" name="migration Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="migration.css" location="/css/migration.css"/>
+    <resource type="download" name="migration.js" location="/js/migration.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>migration</context>
+  </web-resource>
+
+
+  <web-item name="MigrationWebItemCustomField" i18n-name-key="migration-web-item-custom-field.name" key="migration-web-item-custom-field"
+            section="jira.project.sidebar.plugins.navigation" weight="1000">
+    <description key="migration-web-item.description"></description>
+    <label key="migration-web-item-custom-field.label"/>
+    <link linkId="migration-web-item-link">/projects/$pathEncodedProjectKey?selectedItem=com.atlassian.jira.jira-projects-plugin:custom-field-panel</link>
+    <param name="iconClass" value="aui-icon aui-icon-small aui-iconfont-nav-children"/>
+  </web-item>
+
+  <web-item name="MigrationWebItemIssueType" i18n-name-key="migration-web-item-issue-type.name" key="migration-web-item-issue-type"
+            section="jira.project.sidebar.plugins.navigation" weight="1010">
+    <description key="migration-web-item.description"></description>
+    <label key="migration-web-item-issue-type.label"/>
+    <link linkId="migration-web-item-link-2">/projects/$pathEncodedProjectKey?selectedItem=com.atlassian.jira.jira-projects-plugin:issue-type-panel</link>
+    <param name="iconClass" value="aui-icon aui-icon-small aui-iconfont-nav-children"/>
+  </web-item>
+
+  <web-item name="MigrationWebItemWorkflow" i18n-name-key="migration-web-item-workflow.name" key="migration-web-item-workflow"
+            section="jira.project.sidebar.plugins.navigation" weight="1020">
+    <description key="migration-web-item.description"></description>
+    <label key="migration-web-item-workflow.label"/>
+    <link linkId="migration-web-item-link">/projects/$pathEncodedProjectKey?selectedItem=com.atlassian.jira.jira-projects-plugin:workflow-panel</link>
+    <param name="iconClass" value="aui-icon aui-icon-small aui-iconfont-nav-children"/>
+  </web-item>
+
+  <web-item name="MigrationWebItemScreen" i18n-name-key="migration-web-item-screen.name" key="migration-web-item-screen"
+            section="jira.project.sidebar.plugins.navigation" weight="1030">
+    <description key="migration-web-item.description"></description>
+    <label key="migration-web-item-screen.label"/>
+    <link linkId="migration-web-item-link-2">/projects/$pathEncodedProjectKey?selectedItem=com.atlassian.jira.jira-projects-plugin:migration-panel</link>
+    <param name="iconClass" value="aui-icon aui-icon-small aui-iconfont-nav-children"/>
+  </web-item>
+
+  <web-panel name="Migration Panel" i18n-name-key="migration-panel.name" key="migration-panel"
+             location="com.atlassian.jira.jira-projects-plugin:migration-panel" weight="1000">
+    <description key="migration-panel.description">The Migration Panel Plugin</description>
+    <resource type="velocity" name="view" location="templates/project/custom-field-panel.vm"/>
+    <context-provider class="com.jpmc.gti.adp.ui.panels.context.CustomFieldPanelContextProvider"/>
+  </web-panel>
+
+  <web-panel name="Custom Field Panel" i18n-name-key="custom-field-panel.name" key="custom-field-panel"
+             location="com.atlassian.jira.jira-projects-plugin:custom-field-panel" weight="1000">
+    <description key="custom-field-panel.description"></description>
+    <resource type="velocity" name="view" location="templates/project/custom-field-panel.vm"/>
+    <context-provider class="com.jpmc.gti.adp.ui.panels.context.CustomFieldPanelContextProvider"/>
+  </web-panel>
+
+  <web-panel name="Issue Type Panel" i18n-name-key="issue-type-panel.name" key="issue-type-panel"
+             location="com.atlassian.jira.jira-projects-plugin:issue-type-panel" weight="1000">
+    <description key="issue-type-panel.description"></description>
+    <resource type="velocity" name="view" location="templates/project/issue-type-panel.vm"/>
+    <context-provider class="com.jpmc.gti.adp.ui.panels.context.IssueTypePanelContextProvider"/>
+  </web-panel>
+
+  <web-panel name="Workflow Panel" i18n-name-key="workflow-panel.name" key="workflow-panel"
+             location="com.atlassian.jira.jira-projects-plugin:workflow-panel" weight="1000">
+    <description key="workflow-panel.description"></description>
+    <resource type="velocity" name="view" location="templates/project/workflow-panel.vm"/>
+    <context-provider class="com.jpmc.gti.adp.ui.panels.context.WorkflowPanelContextProvider"/>
+  </web-panel>
+
+</atlassian-plugin>

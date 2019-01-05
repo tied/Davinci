@@ -1,0 +1,80 @@
+<div style="display: table; width: 1024px">
+    <div style="display: table-row">
+        <div style="display: table-cell; width: 100%;">
+            <h1 style="color: #172B4D;">JIRA Project Migration Component (JPMC)</h1>
+        </div>
+    </div>
+    <div style="display: table-row">
+        <div style="display: table-cell; width: 100%;">
+            <h4 style="color: #505F79">Please map your project's <span style="color: #FF5630">Workflow</span>
+            to the GTI governance model.</h4>
+        </div>
+    </div>
+</div>
+<p>&nbsp;</p>
+
+
+<div style="display: table; width: 1024px">
+    <div style="display: table-row">
+        <div style="display: table-cell; width: 50%;"><h2 style="color: #6B778C;">Project Snapshot</h2></div>
+        <div style="display: table-cell; width: 50%;"><h2 style="color: #6B778C;">Governance Model</h2></div>
+    </div>
+
+
+#foreach( $workflow in $workflow-list )
+
+    <div style="display: table-row">
+        <div style="display: table-cell; width: 50%;"><hr/></div>
+        <div style="display: table-cell; width: 50%;"><hr/></div>
+    </div>
+
+    <div style="display: table-row;">
+        <div style="display: table-cell; width: 50%; padding: 10px 10px 10px 0px;">
+            <strong style="color: #6B778C">Workflow:</strong><br/>
+            <strong style="color: #0747A6;">$!workflow.getName()</strong>
+            #foreach ( $action in $workflow.getActions() )
+                debug...
+                <span style="color: #0747A6;">$!action.getName()</span>
+                #foreach ( $step in $action.getSteps() )
+                    debug...
+                    <span style="color: #0747A6;">$!step.getName()</span>
+                #end
+            #end
+        </div>
+        <div style="display: table-cell; width: 50%; padding: 10px 10px 10px 0px;">
+            <strong style="color: #6B778C">Workflow:</strong><br/>
+        </div>
+    </div>
+
+    <div style="display: table-row;">
+        <div style="display: table-cell; width: 50%; padding: 10px 10px 10px 0px;">
+            <strong style="color: #6B778C">Status:</strong><br/>
+            <ul>
+            #foreach ( $status in $workflow.getStatuses() )
+                <li>
+                <strong style="color: #0747A6;">$!status.getName()</strong><br/>
+                <span style="color: #6B778C;">$!status.getDescription()</span>
+                </li>
+            #end
+            </ul>
+        </div>
+
+        <div style="display: table-cell; width: 50%; padding: 10px 10px 10px 0px;">
+            <strong style="color: #6B778C">Status:</strong><br/>
+        </div>
+    </div>
+
+    <div style="display: table-row;">
+        <div style="display: table-cell; width: 50%; padding: 10px 10px 10px 0px;">
+            <strong style="color: #6B778C">Description:</strong><br/>
+            <span style="color: #6B778C;">$!workflow.getDescription()</span>
+        </div>
+        <div style="display: table-cell; width: 50%; padding: 10px 10px 10px 0px;">
+            <strong style="color: #6B778C">Description:</strong><br/>
+            $!target-fields.get(0).getDescription()
+        </div>
+    </div>
+
+#end
+
+</div>
